@@ -1,0 +1,670 @@
+fileFormatVersion: 2
+guid: c9593a9495097ed4987ac8afde53cdc4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8223523847855312234
+    second: Pendulum_Platform_Sheet_0
+  - first:
+      213: 6269941004740337198
+    second: Pendulum_Platform_Sheet_1
+  - first:
+      213: -4427248251110416554
+    second: Pendulum_Platform_Sheet_2
+  - first:
+      213: 5629216275897769061
+    second: Pendulum_Platform_Sheet_3
+  - first:
+      213: -7969090106402437538
+    second: Pendulum_Platform_Sheet_4
+  - first:
+      213: 9188172004666770749
+    second: Pendulum_Platform_Sheet_5
+  - first:
+      213: -3435423173931945267
+    second: Pendulum_Platform_Sheet_6
+  - first:
+      213: -5087307641072822502
+    second: Pendulum_Platform_Sheet_7
+  - first:
+      213: 992937474778993906
+    second: Pendulum_Platform_Sheet_8
+  - first:
+      213: -2460801563572972258
+    second: Pendulum_Platform_Sheet_9
+  - first:
+      213: 9144288241658859574
+    second: Pendulum_Platform_Sheet_10
+  - first:
+      213: -2365930250572384157
+    second: Pendulum_Platform_Sheet_11
+  - first:
+      213: 7224894410438569470
+    second: Pendulum_Platform_Sheet_12
+  - first:
+      213: 2435483706048342627
+    second: Pendulum_Platform_Sheet_13
+  - first:
+      213: -3696454938011294814
+    second: Pendulum_Platform_Sheet_14
+  - first:
+      213: 4507510086638364980
+    second: Pendulum_Platform_Sheet_15
+  - first:
+      213: 2913111557290877371
+    second: Pendulum_Platform_Sheet_16
+  - first:
+      213: 2536571573423416844
+    second: Pendulum_Platform_Sheet_17
+  - first:
+      213: 6346344604352389420
+    second: Pendulum_Platform_Sheet_18
+  - first:
+      213: -5638246672653421557
+    second: Pendulum_Platform_Sheet_19
+  - first:
+      213: 4978402640045115895
+    second: Pendulum_Platform_Sheet_20
+  - first:
+      213: -1182192447621546253
+    second: Pendulum_Platform_Sheet_21
+  - first:
+      213: 669432012071243011
+    second: Pendulum_Platform_Sheet_22
+  - first:
+      213: -2318076897745240286
+    second: Pendulum_Platform_Sheet_23
+  - first:
+      213: -7907532019763426457
+    second: Pendulum_Platform_Sheet_24
+  - first:
+      213: 1963510278862246218
+    second: Pendulum_Platform_Sheet_25
+  - first:
+      213: 5142390786772289646
+    second: Pendulum_Platform_Sheet_26
+  - first:
+      213: -7192752160441060386
+    second: Pendulum_Platform_Sheet_27
+  - first:
+      213: -4763778836890757839
+    second: Pendulum_Platform_Sheet_28
+  - first:
+      213: -1904838728511401459
+    second: Pendulum_Platform_Sheet_29
+  - first:
+      213: 8505547248627551264
+    second: Pendulum_Platform_Sheet_30
+  - first:
+      213: -855281863667076338
+    second: Pendulum_Platform_Sheet_31
+  - first:
+      213: 5270372762557855994
+    second: Pendulum_Platform_Sheet_32
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 437
+        width: 132
+        height: 181
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3028e5e525642614f9a4c02601800921
+      internalID: 8223523847855312234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 437
+        width: 166
+        height: 181
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1769c29cdf0c6ba4bac344d2d560a4f6
+      internalID: 6269941004740337198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 409
+        y: 442
+        width: 189
+        height: 176
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e36030755e9e3344baafefd6fcb4f911
+      internalID: -4427248251110416554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 442
+        width: 193
+        height: 176
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f070b6ba80ec78f4898b55861778f304
+      internalID: 5629216275897769061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 794
+        y: 448
+        width: 203
+        height: 170
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85b2e75634d636046a9853f8cc0fad51
+      internalID: -7969090106402437538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 448
+        width: 203
+        height: 170
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bfec3314cdac674bb1b3625c15206a3
+      internalID: 9188172004666770749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1207
+        y: 448
+        width: 194
+        height: 170
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fb019fcf3437e84794df42eb831e179
+      internalID: -3435423173931945267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 244
+        width: 182
+        height: 171
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99e85b0b464adc04b9b04f7b6fb0e03a
+      internalID: -5087307641072822502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 244
+        width: 177
+        height: 171
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71d1688d8c769943bbeedc6ac1b8d36
+      internalID: 992937474778993906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 234
+        width: 145
+        height: 181
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a7c024a532c0ef4695a5c28cdb64a3d
+      internalID: -2460801563572972258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 233
+        width: 124
+        height: 182
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5526f7d9408ae7544a9aac940782ff9e
+      internalID: 9144288241658859574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 233
+        width: 124
+        height: 182
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de2ef15162d409945b9382e7f06653ae
+      internalID: -2365930250572384157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 233
+        width: 124
+        height: 182
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65a6fe7e507993e4d92f2d8a14d9b057
+      internalID: 7224894410438569470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1239
+        y: 233
+        width: 124
+        height: 182
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96de3b037e0af9644b0da2ab2cf676d8
+      internalID: 2435483706048342627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 43
+        width: 124
+        height: 168
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 031fe49b582e5bb489b31c5175b888ee
+      internalID: -3696454938011294814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 47
+        width: 124
+        height: 164
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6594d2ba2e54b5b43afaf1480b9259c5
+      internalID: 4507510086638364980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 47
+        width: 124
+        height: 164
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9131e21b08f9aa84195fc1ed87f9f542
+      internalID: 2913111557290877371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 43
+        width: 124
+        height: 168
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b459315cdb14d14aacee084b1860e6a
+      internalID: 2536571573423416844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 831
+        y: 39
+        width: 124
+        height: 172
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ad26ac31685e0b4d918da5241cc54d2
+      internalID: 6346344604352389420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Pendulum_Platform_Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 39
+        width: 124
+        height: 172
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fb30fe5299cc084e85f00d816e11f52
+      internalID: -5638246672653421557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
