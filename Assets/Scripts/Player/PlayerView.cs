@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System;
 using UnityEngine;
+using UnityEditor.Animations;
+using System.Threading.Tasks;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AnimatorController))]
 public class PlayerView : MonoBehaviour
 {
-    Collider2D playerCollider;
+    //Collider2D playerCollider;
 
     Rigidbody2D playerRB;
+
+    Animator playerAnimCtrl;
 
     bool canMove = true;
 
@@ -91,14 +96,16 @@ public class PlayerView : MonoBehaviour
         moveForce = playerMoveSpeed;
         inAirForce = playerAirForce;
 
-        playerCollider = GetComponent<Collider2D>();
         playerRB = GetComponent<Rigidbody2D>();
+        playerAnimCtrl = GetComponent<Animator>();
+        ShapeShift(startingState);
+
+        
     }
   
     public void ShapeShift(PState newState)
     {
-        //TODO: Probably should animate this and stuff but for now just swap the sprite
-        //SetSprite(newState);
+        playerAnimCtrl.Play(newState.ToString(), 0);
     }
 
 

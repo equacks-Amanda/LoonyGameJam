@@ -49,5 +49,6 @@ public enum PState
     square,
     circle,
     tear,
-    triangle
+    triangle,
+    parasol
 }
