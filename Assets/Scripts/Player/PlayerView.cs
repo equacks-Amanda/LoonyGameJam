@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System;
-using UnityEngine;
 using UnityEditor.Animations;
-using System.Threading.Tasks;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -26,6 +24,8 @@ public class PlayerView : MonoBehaviour
     float moveForce;
 
     float inAirForce;
+
+    PState pendingState;
 
     private void Start()
     {
@@ -105,9 +105,25 @@ public class PlayerView : MonoBehaviour
   
     public void ShapeShift(PState newState)
     {
-        playerAnimCtrl.Play(newState.ToString(), 0);
+        pendingState = newState;
+        Debug.LogFormat("PLAY STATE -> {0}", newState);
+        playerAnimCtrl.Play("TRANSFORM");
+        //StartCoroutine(WaitForTransform(newState));
+        
     }
 
+    public void EXT_OnTransformEnd()
+    {
+        playerAnimCtrl.Play(pendingState.ToString());
+        canMove = true;
+    }
+
+    /*IEnumerator WaitForTransform(PState newstate)
+    {
+        yield return new WaitForSecondsRealtime();
+        playerAnimCtrl.Play(newstate.ToString());
+        canMove = true;
+    }*/
 
     private void OnCollisionEnter2D(Collision2D other) 
     {

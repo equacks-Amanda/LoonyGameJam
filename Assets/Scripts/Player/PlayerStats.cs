@@ -46,9 +46,9 @@ public class PlayerStats
 
 public enum PState
 {
-    square,
-    circle,
-    tear,
-    triangle,
-    parasol
+    SQUARE,
+    CIRCLE,
+    RAINDROP,
+    TRIANGLE,
+    PARASOL
 }

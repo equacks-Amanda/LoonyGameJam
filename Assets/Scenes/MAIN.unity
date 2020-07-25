@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInfo:
-    currentState: 1
+    currentState: 3
     totalHealth: 10
     currentHealth: 10
     moveSpeed: 3
