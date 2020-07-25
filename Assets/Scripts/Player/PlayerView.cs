@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -11,20 +10,17 @@ public class PlayerView : MonoBehaviour
 
     Rigidbody2D playerRB;
 
-    SpriteRenderer playerRenderer;
-
-    [SerializeField]
-    List<Sprite> playerSprites;
-
     bool canMove = true;
 
-    bool isJumping = false;
+    bool isJumping = true;
 
     Collider2D currentObstacle;
 
     float jumpForce;
 
     float moveForce;
+
+    float inAirForce;
 
     private void Start()
     {
@@ -50,6 +46,7 @@ public class PlayerView : MonoBehaviour
             {
                 // One hop this time...
                 direction = Vector2.up;
+                isJumping = true;
             }
             else if(Input.GetKey("down") || Input.GetKey("s"))
             {
@@ -69,19 +66,33 @@ public class PlayerView : MonoBehaviour
     private void UpdateMovement(Vector2 direction, float delta)
     {
         Vector2 currentPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        playerRB.MovePosition(currentPosition + direction * moveForce * delta);
+        if (!isJumping)
+        {
+            playerRB.MovePosition(currentPosition + direction * moveForce * delta);
+        }
+        else
+        {
+            if(direction != Vector2.up)
+            {
+                playerRB.AddForce(direction * inAirForce);
+            }
+            else
+            {
+                playerRB.AddForce(direction * jumpForce);
+            }
+            
+        }
+        
     }
 
-    public void Initialize(PState startingState, float playerJumpSpeed, float playerMoveSpeed)
+    public void Initialize(PState startingState, float playerJumpSpeed, float playerMoveSpeed, float playerAirForce)
     {
-        //SetSprite(startingState);
-
         jumpForce = playerJumpSpeed;
         moveForce = playerMoveSpeed;
+        inAirForce = playerAirForce;
 
         playerCollider = GetComponent<Collider2D>();
         playerRB = GetComponent<Rigidbody2D>();
-        playerRenderer = GetComponent<SpriteRenderer>();
     }
   
     public void ShapeShift(PState newState)
@@ -90,14 +101,6 @@ public class PlayerView : MonoBehaviour
         //SetSprite(newState);
     }
 
-    void SetSprite(PState state)
-    {
-        Sprite startingSprite = playerSprites[(int)state];
-        if(startingSprite != null)
-        {
-            playerRenderer.sprite = startingSprite;
-        }
-    }
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
@@ -110,6 +113,11 @@ public class PlayerView : MonoBehaviour
                 currentObstacle = other.collider;
                 //Fire Off Event
                 EventManager.instance.QueueEvent(new PlayerEvents.ObsCollision(other.gameObject, AllowMoveThrough));
+            }
+             else if( other.gameObject.tag == "GRND")
+            {
+                isJumping = false;
+                playerRB.velocity = Vector2.zero;
             }
         }
     }

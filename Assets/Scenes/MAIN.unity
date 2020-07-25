@@ -283,7 +283,8 @@ MonoBehaviour:
     totalHealth: 10
     currentHealth: 10
     moveSpeed: 3
-    jumpSpeed: 500
+    jumpSpeed: 200
+    airSpeed: 10
   playerPrefab: {fileID: 744280225548901564, guid: 559fac6638af21b41b817953e225b934,
     type: 3}
 --- !u!1 &1483368178

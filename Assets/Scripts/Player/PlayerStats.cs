@@ -16,13 +16,16 @@ public class PlayerStats
 
     public float jumpSpeed;
 
-    PlayerStats(PState startingState, int _totalHealth, int _currentHealth, float _moveSpeed, float _jumpSpeed)
+    public float airSpeed;
+
+    PlayerStats(PState startingState, int _totalHealth, int _currentHealth, float _moveSpeed, float _jumpSpeed, float _airSpeed)
     {
         currentState = startingState;
         totalHealth = _totalHealth;
         currentHealth = _currentHealth;
         moveSpeed = _moveSpeed;
         jumpSpeed = _jumpSpeed;
+        airSpeed = _airSpeed;
     }
 
     public bool IsDead()
