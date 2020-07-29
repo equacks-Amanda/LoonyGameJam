@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ public class PlayerView : MonoBehaviour
     //Collider2D playerCollider;
 
     Rigidbody2D playerRB;
+
+    Dictionary<string, GameObject> playerStateColliders = new Dictionary<string, GameObject>();
 
     Animator playerAnimCtrl;
 
@@ -26,6 +29,9 @@ public class PlayerView : MonoBehaviour
     float inAirForce;
 
     PState pendingState;
+
+    PStateCollider pendingStateCollider;
+    PStateCollider previousStateCollider;
 
     private void Start()
     {
@@ -90,7 +96,7 @@ public class PlayerView : MonoBehaviour
         
     }
 
-    public void Initialize(PState startingState, float playerJumpSpeed, float playerMoveSpeed, float playerAirForce)
+    public void Initialize(PState startingState, PStateCollider startingStateCollider, float playerJumpSpeed, float playerMoveSpeed, float playerAirForce)
     {
         jumpForce = playerJumpSpeed;
         moveForce = playerMoveSpeed;
@@ -98,14 +104,21 @@ public class PlayerView : MonoBehaviour
 
         playerRB = GetComponent<Rigidbody2D>();
         playerAnimCtrl = GetComponent<Animator>();
-        ShapeShift(startingState);
-
-        
+        // Ensure starting collider matches starting state and all colliders are referenced
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            GameObject temp = gameObject.transform.GetChild(i).gameObject;
+            playerStateColliders[temp.name.ToLower()] = temp;
+        }
+        previousStateCollider = startingStateCollider;
+        pendingStateCollider = startingStateCollider;
+        ShapeShift(startingState, startingStateCollider);
     }
   
-    public void ShapeShift(PState newState)
+    public void ShapeShift(PState newState, PStateCollider newStateCollider)
     {
         pendingState = newState;
+        pendingStateCollider = newStateCollider;
         Debug.LogFormat("PLAY STATE -> {0}", newState);
         playerAnimCtrl.Play("TRANSFORM");
         //StartCoroutine(WaitForTransform(newState));
@@ -114,6 +127,12 @@ public class PlayerView : MonoBehaviour
 
     public void EXT_OnTransformEnd()
     {
+        if (previousStateCollider != pendingStateCollider)
+        {
+            playerStateColliders[pendingStateCollider.ToString().ToLower()].SetActive(true);
+            playerStateColliders[previousStateCollider.ToString().ToLower()].SetActive(false);
+        }
+        previousStateCollider = pendingStateCollider;
         playerAnimCtrl.Play(pendingState.ToString());
         canMove = true;
     }

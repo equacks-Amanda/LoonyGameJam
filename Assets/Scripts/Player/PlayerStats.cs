@@ -8,6 +8,8 @@ public class PlayerStats
 {
     public PState currentState;
 
+    public PStateCollider currentStateCollider;
+
     public int totalHealth;
 
     public int currentHealth;
@@ -51,4 +53,13 @@ public enum PState
     RAINDROP,
     TRIANGLE,
     PARASOL
+}
+
+public enum PStateCollider
+{
+    SquareCollider,
+    CircleCollider,
+    RainCollider,
+    KeyCollider,
+    ParasolCollider
 }

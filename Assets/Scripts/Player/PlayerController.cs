@@ -36,19 +36,22 @@ public class PlayerController
         {
             //Found Spawn
             currentPlayer = GameObject.Instantiate(playerPrefab, playerSpawn, true);
-            currentPlayer.Initialize(playerModel.currentState, playerModel.jumpSpeed,playerModel.moveSpeed, playerModel.airSpeed);
+            currentPlayer.Initialize(playerModel.currentState, playerModel.currentStateCollider, playerModel.jumpSpeed,playerModel.moveSpeed, playerModel.airSpeed);
         }
     }
 
     void OnShapeShift(PlayerEvents.ShapeShift @event)
     {
         PState newState = playerModel.currentState += 1;
+        PStateCollider newStateCollider = playerModel.currentStateCollider += 1;
         if ((int)playerModel.currentState > Enum.GetValues(typeof(PState)).Length -1)
         {
             newState = 0;
+            newStateCollider = 0;
         }
         playerModel.currentState = newState;
-        currentPlayer.ShapeShift(newState);
+        playerModel.currentStateCollider = newStateCollider;
+        currentPlayer.ShapeShift(newState, newStateCollider);
     }
 
     void OnCollisionWithObstacle(PlayerEvents.ObsCollision @event)
