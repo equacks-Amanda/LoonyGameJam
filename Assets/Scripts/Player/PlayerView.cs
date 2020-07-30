@@ -8,8 +8,6 @@ using UnityEngine;
 [RequireComponent(typeof(AnimatorController))]
 public class PlayerView : MonoBehaviour
 {
-    //Collider2D playerCollider;
-
     Rigidbody2D playerRB;
 
     Dictionary<string, GameObject> playerStateColliders = new Dictionary<string, GameObject>();
@@ -29,9 +27,11 @@ public class PlayerView : MonoBehaviour
     float inAirForce;
 
     PState pendingState;
-
+    
+    // The state the player is shifting to next
     PStateCollider pendingStateCollider;
-    PStateCollider previousStateCollider;
+    // The player's previous state.  Also technically counts as their current state until right before the switch
+    PStateCollider previousStateCollider = PStateCollider.SquareCollider;
 
     private void Start()
     {
@@ -43,17 +43,17 @@ public class PlayerView : MonoBehaviour
         if(canMove)
         {
             Vector2 direction = Vector2.zero;
-            if(Input.GetKey("right") || Input.GetKey("d"))
+            if((Input.GetKey("right") || Input.GetKey("d")) && (!IsState(PStateCollider.SquareCollider) && !IsState(PStateCollider.KeyCollider)))
             {
                 // To the right...
                 direction = Vector2.right;
             }
-            else if(Input.GetKey("left") || Input.GetKey("a"))
+            else if((Input.GetKey("left") || Input.GetKey("a")) && (!IsState(PStateCollider.SquareCollider) && !IsState(PStateCollider.KeyCollider)))
             {
                 // To the left ...
                 direction = Vector2.left;
             }
-            else if(Input.GetKey("space") && !isJumping)
+            else if(Input.GetKey("space") && IsState(PStateCollider.SquareCollider) && !isJumping)
             {
                 // One hop this time...
                 direction = Vector2.up;
@@ -77,7 +77,7 @@ public class PlayerView : MonoBehaviour
     private void UpdateMovement(Vector2 direction, float delta)
     {
         Vector2 currentPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        if (!isJumping)
+        if (!isJumping && !IsState(PStateCollider.ParasolCollider))
         {
             playerRB.MovePosition(currentPosition + direction * moveForce * delta);
         }
@@ -85,6 +85,11 @@ public class PlayerView : MonoBehaviour
         {
             if(direction != Vector2.up)
             {
+                if (IsState(PStateCollider.ParasolCollider))
+                {
+                    playerRB.MovePosition(currentPosition + direction * moveForce * delta);
+                    return;
+                }
                 playerRB.AddForce(direction * inAirForce);
             }
             else
@@ -120,9 +125,9 @@ public class PlayerView : MonoBehaviour
         pendingState = newState;
         pendingStateCollider = newStateCollider;
         Debug.LogFormat("PLAY STATE -> {0}", newState);
+        gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        playerRB.freezeRotation = newState.ToString().ToLower().Equals("circle") ? false : true;
         playerAnimCtrl.Play("TRANSFORM");
-        //StartCoroutine(WaitForTransform(newState));
-        
     }
 
     public void EXT_OnTransformEnd()
@@ -136,13 +141,6 @@ public class PlayerView : MonoBehaviour
         playerAnimCtrl.Play(pendingState.ToString());
         canMove = true;
     }
-
-    /*IEnumerator WaitForTransform(PState newstate)
-    {
-        yield return new WaitForSecondsRealtime();
-        playerAnimCtrl.Play(newstate.ToString());
-        canMove = true;
-    }*/
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
@@ -191,4 +189,13 @@ public class PlayerView : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Compares current collider state to the parameter's state
+    /// </summary>
+    /// <param name="stateForCheck"></param>
+    /// <returns>true if they match, else false</returns>
+    private bool IsState(PStateCollider stateForCheck)
+    {
+        return (previousStateCollider == stateForCheck);
+    }
 }

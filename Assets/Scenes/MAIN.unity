@@ -280,6 +280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInfo:
     currentState: 0
+    currentStateCollider: 0
     totalHealth: 10
     currentHealth: 10
     moveSpeed: 3
