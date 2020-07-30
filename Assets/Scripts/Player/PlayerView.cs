@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,7 +19,11 @@ public class PlayerView : MonoBehaviour
 
     bool isJumping = true;
 
+    bool isTransitioning = false;
+
     Collider2D currentObstacle;
+
+    float velocityBeforeTransition;
 
     float jumpForce;
 
@@ -66,12 +71,14 @@ public class PlayerView : MonoBehaviour
             else if(Input.GetKey("q"))
             {
                 canMove = false;
+                playerRB.Sleep();
+                velocityBeforeTransition = playerRB.velocity.x;
                 EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift());
+                return;
             }
 
             UpdateMovement(direction, Time.fixedDeltaTime);
         }
-        
     }
 
     private void UpdateMovement(Vector2 direction, float delta)
@@ -98,7 +105,6 @@ public class PlayerView : MonoBehaviour
             }
             
         }
-        
     }
 
     public void Initialize(PState startingState, PStateCollider startingStateCollider, float playerJumpSpeed, float playerMoveSpeed, float playerAirForce)
@@ -140,8 +146,10 @@ public class PlayerView : MonoBehaviour
         previousStateCollider = pendingStateCollider;
         playerAnimCtrl.Play(pendingState.ToString());
         canMove = true;
+        playerRB.WakeUp();
+        UpdateMovement(new Vector2(velocityBeforeTransition, 0), Time.fixedDeltaTime);
     }
-
+     
     private void OnCollisionEnter2D(Collision2D other) 
     {
         //Check to make sure we're not trying to pass over the same obstacle every frame of movement
@@ -158,6 +166,12 @@ public class PlayerView : MonoBehaviour
             {
                 isJumping = false;
                 playerRB.velocity = Vector2.zero;
+            }
+             else if(other.gameObject.tag == "Finish")
+            {
+                currentObstacle = other.collider;
+                // Fire off event
+                EventManager.instance.QueueEvent(new PlayerEvents.ObsCollision(other.gameObject, CanUnlockDoor));
             }
         }
     }
@@ -187,6 +201,19 @@ public class PlayerView : MonoBehaviour
             force.Normalize();
             playerRB.AddForce( -force * jumpForce);
         }
+    }
+
+    private void CanUnlockDoor(bool canUnlock)
+    {
+        if (canUnlock)
+        {
+            Debug.Log("YOU WON!");
+            playerRB.Sleep();
+            playerAnimCtrl.Play("TRANSFORM");
+            return;
+        }
+
+        Debug.Log("Sorry, but that's not a key to this door");
     }
 
     /// <summary>

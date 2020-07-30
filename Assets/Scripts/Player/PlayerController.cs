@@ -62,11 +62,11 @@ public class PlayerController
         {
             if(playerModel.currentState == collidedObs.requiredState)
             {
-                @event.canPlayerPass(true);
+                @event.isCorrectState(true);
             }
             else
             {
-                @event.canPlayerPass(false);
+                @event.isCorrectState(false);
             }
         }
     }

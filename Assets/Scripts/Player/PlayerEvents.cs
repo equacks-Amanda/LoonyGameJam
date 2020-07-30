@@ -14,12 +14,12 @@ namespace PlayerEvents
    {
        public readonly GameObject obstacle;
 
-       public readonly Action<bool> canPlayerPass;
+       public readonly Action<bool> isCorrectState;
 
-       public ObsCollision(GameObject _obstacle, Action<bool> canPassCallback )
+       public ObsCollision(GameObject _obstacle, Action<bool> stateCheckCallback )
        {
            obstacle = _obstacle;
-           canPlayerPass = canPassCallback;
+           isCorrectState = stateCheckCallback;
        }
    }
 }
