@@ -36,6 +36,7 @@ public class PlayerController
         {
             //Found Spawn
             currentPlayer = GameObject.Instantiate(playerPrefab, playerSpawn, true);
+            EventManager.instance.QueueEvent(new PlayerEvents.SendTransform(currentPlayer.transform));
             currentPlayer.Initialize(playerModel.currentState, playerModel.currentStateCollider, playerModel.jumpSpeed,playerModel.moveSpeed, playerModel.airSpeed);
         }
     }

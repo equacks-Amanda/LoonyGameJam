@@ -22,4 +22,14 @@ namespace PlayerEvents
            isCorrectState = stateCheckCallback;
        }
    }
+
+    public struct SendTransform : iEvent
+    {
+        public readonly Transform playerTransform;
+
+        public SendTransform(Transform pTransform)
+        {
+            playerTransform = pTransform;
+        }
+    }
 }

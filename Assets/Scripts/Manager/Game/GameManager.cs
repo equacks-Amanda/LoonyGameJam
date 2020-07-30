@@ -2,19 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class GameManager: MonoSingleton<GameManager>
 {
     #region Properties
-    List<Obstacle> currentLevelObstacles = new List<Obstacle>();
-
+ 
+    [Header("Player Information")]
     [SerializeField]
     PlayerStats playerInfo;
 
     [SerializeField]
     PlayerView playerPrefab;
 
+    [Header("Camera Set Up")]
+    [SerializeField]
+    CameraFollowPlayer follower;
+
+    [SerializeField]
+    Vector2 cameraFollowOffset;
+
+    [Header("Sound Set Up")]
+    [Range(0,1)]
+    [SerializeField]
+    float musicVolume = .5f;
+
+    [SerializeField]
+    AudioClip musicClip;
 
     #endregion
 
@@ -25,6 +41,7 @@ public class GameManager: MonoSingleton<GameManager>
         Subscribe();
         //Load Scene
         StartCoroutine(LoadAsyncFirstScene());
+        follower.offSet = cameraFollowOffset;
     }
 
     IEnumerator LoadAsyncFirstScene()
@@ -49,18 +66,13 @@ public class GameManager: MonoSingleton<GameManager>
 
     #region Ready Scene Change
 
-    private void FindObstaclesInScene()
-    {
-        currentLevelObstacles = new List<Obstacle>(FindObjectsOfType<Obstacle>());
-        if(currentLevelObstacles.Count <= 0 )
-        {
-            Debug.LogWarning("FOIS - NONE FOUND - CORRECT?");
-        }
-    }
-
     private void OnSpawnFound(EnvioEvents.SpawnerCreated @event)
     {
         PlayerController pCtrl = new PlayerController(playerPrefab, playerInfo, @event.spawnerLoc);
+        AudioSource audioSrc = gameObject.AddComponent<AudioSource>();
+        audioSrc.volume = musicVolume;
+        audioSrc.clip = musicClip;
+        audioSrc.Play();
     }
 
     #endregion

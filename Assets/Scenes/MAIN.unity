@@ -163,6 +163,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -178,6 +179,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4233614cb3a716845984dab24cc0024c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
+  offSet: {x: 0, y: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -205,7 +220,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -283,11 +298,15 @@ MonoBehaviour:
     currentStateCollider: 0
     totalHealth: 10
     currentHealth: 10
-    moveSpeed: 3
+    moveSpeed: 2
     jumpSpeed: 200
     airSpeed: 10
   playerPrefab: {fileID: 744280225548901564, guid: 559fac6638af21b41b817953e225b934,
     type: 3}
+  follower: {fileID: 519420030}
+  cameraFollowOffset: {x: 1, y: 0}
+  musicVolume: 0.25
+  musicClip: {fileID: 8300000, guid: b4e57a22338bddb4c9500ff91d5a0a1c, type: 3}
 --- !u!1 &1483368178
 GameObject:
   m_ObjectHideFlags: 0
