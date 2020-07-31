@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 744280225548901562}
   - component: {fileID: 744280225548901564}
   - component: {fileID: 8345942712999141185}
-  - component: {fileID: 8456167747821145460}
   - component: {fileID: 654512655136112100}
   m_Layer: 13
   m_Name: PlayerPrefab
@@ -78,7 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: -4503519167717803211, guid: 733eaa002d60b6749aaa5fd8e16bde47,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,22 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &8456167747821145460
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 744280225548901565}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.1
 --- !u!95 &654512655136112100
 Animator:
   serializedVersion: 3
@@ -317,9 +301,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.16
 --- !u!1 &7972072229981851077
 GameObject:
   m_ObjectHideFlags: 0

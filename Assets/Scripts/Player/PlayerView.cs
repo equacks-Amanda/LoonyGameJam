@@ -4,7 +4,6 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Experimental.PlayerLoop;
 
-[RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(AnimatorController))]
 public class PlayerView : MonoBehaviour
@@ -19,11 +18,7 @@ public class PlayerView : MonoBehaviour
 
     bool isJumping = true;
 
-    bool isTransitioning = false;
-
     Collider2D currentObstacle;
-
-    float velocityBeforeTransition;
 
     float jumpForce;
 
@@ -38,14 +33,23 @@ public class PlayerView : MonoBehaviour
     // The player's previous state.  Also technically counts as their current state until right before the switch
     PStateCollider previousStateCollider = PStateCollider.SquareCollider;
 
+
     private void Start()
     {
         Debug.Log("PV ==> Created");
+        EventManager.instance.AddListener<PlayerEvents.RespawnPlayer>(OnRespawnPlayer);
     }
 
     private void FixedUpdate() 
     {
-        if(canMove)
+        //Check if falling
+        if(!Physics2D.Raycast(this.transform.position, Vector2.down, 1f))
+        {
+            isJumping = true;
+            Debug.Log("FALLING");
+        }
+
+        if (canMove)
         {
             Vector2 direction = Vector2.zero;
             if((Input.GetKey("right") || Input.GetKey("d")) && (!IsState(PStateCollider.SquareCollider) && !IsState(PStateCollider.KeyCollider)))
@@ -68,40 +72,67 @@ public class PlayerView : MonoBehaviour
             {
                 // how low can you go?
             }
-            else if(Input.GetKey("q"))
+            else if(Input.GetKey("1"))
             {
                 canMove = false;
                 playerRB.Sleep();
-                velocityBeforeTransition = playerRB.velocity.x;
-                EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift());
+                EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift(PState.SQUARE));
+                return;
+            }
+            else if (Input.GetKey("2"))
+            {
+                canMove = false;
+                playerRB.Sleep();
+                EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift(PState.CIRCLE));
+                return;
+            }
+            else if (Input.GetKey("3"))
+            {
+                canMove = false;
+                playerRB.Sleep();
+                EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift(PState.PARASOL));
+                return;
+            }
+            else if (Input.GetKey("4"))
+            {
+                canMove = false;
+                playerRB.Sleep();
+                EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift(PState.TRIANGLE));
                 return;
             }
 
-            UpdateMovement(direction, Time.fixedDeltaTime);
+            if(direction != Vector2.zero)
+                UpdateMovement(direction, Time.fixedDeltaTime);
         }
     }
 
     private void UpdateMovement(Vector2 direction, float delta)
     {
         Vector2 currentPosition = new Vector2(this.transform.position.x, this.transform.position.y);
-        if (!isJumping && !IsState(PStateCollider.ParasolCollider))
+        if (!isJumping )
         {
-            playerRB.MovePosition(currentPosition + direction * moveForce * delta);
+            if(IsState(PStateCollider.CircleCollider))
+                playerRB.MovePosition(currentPosition + direction * moveForce * delta);
         }
         else
         {
             if(direction != Vector2.up)
             {
+                //Glide if we're a parasol ~
                 if (IsState(PStateCollider.ParasolCollider))
                 {
                     playerRB.MovePosition(currentPosition + direction * moveForce * delta);
                     return;
                 }
+
+                //Obey gravity if we're not >.<
                 playerRB.AddForce(direction * inAirForce);
             }
             else
             {
-                playerRB.AddForce(direction * jumpForce);
+                //We're jumping upwards if we're a square :D
+                if(IsState(PStateCollider.SquareCollider))
+                    playerRB.AddForce(direction * jumpForce);
             }
             
         }
@@ -128,11 +159,16 @@ public class PlayerView : MonoBehaviour
   
     public void ShapeShift(PState newState, PStateCollider newStateCollider)
     {
+        playerRB.velocity = Vector2.zero;
         pendingState = newState;
         pendingStateCollider = newStateCollider;
+
         Debug.LogFormat("PLAY STATE -> {0}", newState);
+        //Reset Rotation
         gameObject.transform.rotation = new Quaternion(0, 0, 0, 0);
+        //Allow RB motion as circle
         playerRB.freezeRotation = newState.ToString().ToLower().Equals("circle") ? false : true;
+
         playerAnimCtrl.Play("TRANSFORM");
     }
 
@@ -146,8 +182,9 @@ public class PlayerView : MonoBehaviour
         previousStateCollider = pendingStateCollider;
         playerAnimCtrl.Play(pendingState.ToString());
         canMove = true;
+        
         playerRB.WakeUp();
-        UpdateMovement(new Vector2(velocityBeforeTransition, 0), Time.fixedDeltaTime);
+        //UpdateMovement(new Vector2(velocityBeforeTransition, 0), Time.fixedDeltaTime);
     }
      
     private void OnCollisionEnter2D(Collision2D other) 
@@ -166,6 +203,12 @@ public class PlayerView : MonoBehaviour
             {
                 isJumping = false;
                 playerRB.velocity = Vector2.zero;
+                //Raycast out
+                if (ReturnDirection(this.gameObject, other.gameObject) != HitDirection.Bottom)
+                {
+                    currentObstacle = other.collider;
+                    AllowMoveThrough(false);
+                }
             }
              else if(other.gameObject.tag == "Finish")
             {
@@ -186,6 +229,10 @@ public class PlayerView : MonoBehaviour
         }
     }
 
+    private void OnRespawnPlayer(PlayerEvents.RespawnPlayer @event)
+    {
+        playerRB.velocity = Vector2.zero;
+    }
     private void AllowMoveThrough(bool canPass)
     {
         if(canPass)
@@ -200,6 +247,7 @@ public class PlayerView : MonoBehaviour
 
             force.Normalize();
             playerRB.AddForce( -force * jumpForce);
+            currentObstacle = null;
         }
     }
 
@@ -224,5 +272,35 @@ public class PlayerView : MonoBehaviour
     private bool IsState(PStateCollider stateForCheck)
     {
         return (previousStateCollider == stateForCheck);
+    }
+
+    // TOOK THIS CODE FROM UNITY FORUMS - NEEDS REVIEWD AND POSSIBLY REVISED
+    private enum HitDirection { None, Top, Bottom, Forward, Back, Left, Right }
+    private HitDirection ReturnDirection(GameObject player, GameObject objCollision)
+    {
+
+        HitDirection hitDirection = HitDirection.None;
+        RaycastHit MyRayHit;
+        Vector3 direction = (player.transform.position - objCollision.transform.position).normalized;
+        Ray MyRay = new Ray(objCollision.transform.position, direction);
+
+        if (Physics.Raycast(MyRay, out MyRayHit))
+        {
+
+            if (MyRayHit.collider != null)
+            {
+
+                Vector3 MyNormal = MyRayHit.normal;
+                MyNormal = MyRayHit.transform.TransformDirection(MyNormal);
+
+                if (MyNormal == MyRayHit.transform.up) { hitDirection = HitDirection.Top; }
+                if (MyNormal == -MyRayHit.transform.up) { hitDirection = HitDirection.Bottom; }
+                if (MyNormal == MyRayHit.transform.forward) { hitDirection = HitDirection.Forward; }
+                if (MyNormal == -MyRayHit.transform.forward) { hitDirection = HitDirection.Back; }
+                if (MyNormal == MyRayHit.transform.right) { hitDirection = HitDirection.Right; }
+                if (MyNormal == -MyRayHit.transform.right) { hitDirection = HitDirection.Left; }
+            }
+        }
+        return hitDirection;
     }
 }

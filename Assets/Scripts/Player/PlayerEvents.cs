@@ -7,7 +7,12 @@ namespace PlayerEvents
 {
    public struct ShapeShift : iEvent
    {
+        public readonly PState setState;
 
+        public ShapeShift(PState stateToSet)
+        {
+            setState = stateToSet;
+        }
    }
 
    public struct ObsCollision : iEvent
@@ -30,6 +35,16 @@ namespace PlayerEvents
         public SendTransform(Transform pTransform)
         {
             playerTransform = pTransform;
+        }
+    }
+
+    public struct RespawnPlayer : iEvent 
+    {
+        public Transform playerTransform;
+
+        public RespawnPlayer(Transform referenceToPlayerTransform)
+        {
+            playerTransform = referenceToPlayerTransform;
         }
     }
 }

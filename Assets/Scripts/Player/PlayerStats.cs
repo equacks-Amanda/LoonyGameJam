@@ -50,7 +50,6 @@ public enum PState
 {
     SQUARE,
     CIRCLE,
-    RAINDROP,
     TRIANGLE,
     PARASOL
 }
@@ -59,7 +58,6 @@ public enum PStateCollider
 {
     SquareCollider,
     CircleCollider,
-    RainCollider,
     KeyCollider,
     ParasolCollider
 }

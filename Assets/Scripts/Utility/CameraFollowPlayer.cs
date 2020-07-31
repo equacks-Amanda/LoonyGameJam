@@ -27,12 +27,21 @@ public class CameraFollowPlayer : MonoBehaviour
     {
         if(playerTransform!=null)
         {
-            Vector3 temp = this.transform.position;
+            if(playerTransform.position.y <= -6)
+            {
+                EventManager.instance.QueueEvent(new PlayerEvents.RespawnPlayer(playerTransform));
+                
+            }
+            else
+            {
+                Vector3 temp = this.transform.position;
 
-            temp.x = playerTransform.position.x + offSet.x;
-            temp.y = playerTransform.position.y + offSet.y;
+                temp.x = playerTransform.position.x + offSet.x;
+                temp.y = playerTransform.position.y + offSet.y;
 
-            transform.position = temp;
+                transform.position = temp;
+            }
+            
         }
     }
 }

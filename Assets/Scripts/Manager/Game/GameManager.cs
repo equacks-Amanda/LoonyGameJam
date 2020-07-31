@@ -32,6 +32,8 @@ public class GameManager: MonoSingleton<GameManager>
     [SerializeField]
     AudioClip musicClip;
 
+
+    Vector2 initialSpawnLocation;
     #endregion
 
     #region StartUp
@@ -59,6 +61,7 @@ public class GameManager: MonoSingleton<GameManager>
         {
             //Subscribe to player / game events
             EventManager.instance.AddListener<EnvioEvents.SpawnerCreated>(OnSpawnFound);
+            EventManager.instance.AddListener<PlayerEvents.RespawnPlayer>(OnRespawnPlayer);
         }
     }
 
@@ -69,10 +72,19 @@ public class GameManager: MonoSingleton<GameManager>
     private void OnSpawnFound(EnvioEvents.SpawnerCreated @event)
     {
         PlayerController pCtrl = new PlayerController(playerPrefab, playerInfo, @event.spawnerLoc);
+        initialSpawnLocation = @event.spawnerLoc.position;
         AudioSource audioSrc = gameObject.AddComponent<AudioSource>();
         audioSrc.volume = musicVolume;
         audioSrc.clip = musicClip;
         audioSrc.Play();
+    }
+
+    private void OnRespawnPlayer(PlayerEvents.RespawnPlayer @event)
+    {
+        Transform playerTransform = @event.playerTransform;
+
+        playerTransform.position = initialSpawnLocation;
+        EventManager.instance.QueueEvent(new PlayerEvents.ShapeShift(PState.SQUARE));
     }
 
     #endregion

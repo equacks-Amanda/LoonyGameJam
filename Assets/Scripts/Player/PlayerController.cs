@@ -43,16 +43,12 @@ public class PlayerController
 
     void OnShapeShift(PlayerEvents.ShapeShift @event)
     {
-        PState newState = playerModel.currentState += 1;
-        PStateCollider newStateCollider = playerModel.currentStateCollider += 1;
-        if ((int)playerModel.currentState > Enum.GetValues(typeof(PState)).Length -1)
-        {
-            newState = 0;
-            newStateCollider = 0;
-        }
-        playerModel.currentState = newState;
+        int shape = (int)@event.setState;
+        PStateCollider newStateCollider = (PStateCollider)shape;
+        
+        playerModel.currentState = @event.setState;
         playerModel.currentStateCollider = newStateCollider;
-        currentPlayer.ShapeShift(newState, newStateCollider);
+        currentPlayer.ShapeShift(@event.setState, newStateCollider);
     }
 
     void OnCollisionWithObstacle(PlayerEvents.ObsCollision @event)
