@@ -246,7 +246,7 @@ public class PlayerView : MonoBehaviour
             Vector2 force = this.transform.position - currentObstacle.transform.position;
 
             force.Normalize();
-            playerRB.AddForce( -force * jumpForce);
+            playerRB.AddForce( -force, ForceMode2D.Impulse);
             currentObstacle = null;
         }
     }
